@@ -17,10 +17,13 @@ int main(int argc, char** argv){
         return 1;
     }
     int hilighted = 0x690899;
-    int color [6] = {
-        0xff00ff, // purple
-        0xff0073,    // cyan
+    int color [2] = {
+        0xff00ff, // color1
+        0xff0073,    // color2
     };
+    int color_number = 2;
+
+
     char path [400] ;
     strcpy(path, getenv("HOME"));
     strcat(path, "/.config/crcl-select/");
@@ -79,7 +82,7 @@ int main(int argc, char** argv){
                     s_angle +   (i == 0 ? 360 : 0),
                                 (i == 0) ? "||"     : "&&",
                     e_angle,
-                    color[i % 2],
+                    color[i % color_number],
                     hilighted,
                     155     * cos(angle),
                     -155    * sin(angle)
