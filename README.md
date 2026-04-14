@@ -1,7 +1,8 @@
 # A circle widget
- - Made for Hyprland btw
+ - Made for Hyprland btw 
  - made with eww https://github.com/elkowar/eww
  - written in C / yuck / css
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/3d6bfeea-0091-43c6-af57-352f08cbb68c" />
 
 ## Build
  - clone with
