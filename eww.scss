@@ -1,0 +1,21 @@
+* {
+  all: unset;
+   /* // Unsets everything so you can style everything from scratch */
+}
+
+/* // Global Styles */
+.Circle {
+background: none;
+
+//   background-color: #a526fa;
+  color: #d00068;
+  padding: 10px;
+    border-radius: 10px;
+    font-size: xx-large ;
+}
+.Circle :hover {
+    // background-color: #de0808;
+    color: #b0b4bc;
+    padding: 10px;
+    border-radius: 25px;
+}
