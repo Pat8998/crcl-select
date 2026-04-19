@@ -4,6 +4,11 @@
  - written in C / yuck / css
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/3d6bfeea-0091-43c6-af57-352f08cbb68c" />
 
+## Download
+```
+https://github.com/Pat8998/crcl-select/
+```
+
 ## Build
  - clone with
    ```
@@ -41,6 +46,6 @@
 ## Features-request
 
 Well, I'm in studies so basically if you want to do smth you'd have to do it yourselves :(
-I would like to make themes, but this is hard 🥲
+I would like to make themes, but this is hard 🥲 (if you do it I recommend parsing a json  for colors)
  - Battery text color and size is in `eww.scss`
  - the rest is kinda hardcoded in `eww-circle.c`... you can change it and recompile of course. You'd need a similar trick as the json name file (put into a separate file) to get a dynamic argument that you would put diretly in the open script
