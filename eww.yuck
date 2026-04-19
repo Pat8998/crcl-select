@@ -36,7 +36,7 @@
     :wm-ignore false
     (overlay         
         (input
-            :onchange "notify-send \"$(cat json_files/.json_name)\" & ~/.config/crcl-select/cr-exe $(cat .json_name) \"$(echo {} | rev | cut -c1)\" hey & eww close Circle -c ~/.config/crcl-select"
+            :onchange "~/.config/crcl-select/cr-exe $(cat json_files/.json_name) \"$(echo {} | rev | cut -c1)\" hey & eww close Circle -c ~/.config/crcl-select"
             :password true
             :style "font-size: 0px"
         )
