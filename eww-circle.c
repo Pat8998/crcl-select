@@ -26,7 +26,7 @@ int main(int argc, char** argv){
 
     char path [400] ;
     strcpy(path, getenv("HOME"));
-    strcat(path, "/.config/crcl-select/");
+    strcat(path, "/.config/crcl-select/json_files/");
     strcat(path, argv[1]);
     json_error_t error;
     json_t *root = json_load_file(path, 0, &error);

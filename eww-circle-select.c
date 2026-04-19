@@ -8,7 +8,7 @@ int main(int argc, char** argv) {
     if (argv[1][0] == 'o')
     {
         char cmd[200];
-        sprintf(cmd, "echo %s > ~/.config/crcl-select/.json_name;\
+        sprintf(cmd, "echo %s > ~/.config/crcl-select/json_files/.json_name;\
             ~/.config/crcl-select/cr-angle 0 & eww open Circle -c ~/.config/crcl-select/",
             argv[2]);
         system(cmd);

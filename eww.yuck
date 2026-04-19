@@ -2,7 +2,7 @@
 (defvar pi 3.1415926535897932384626433832795028841971693993751058209749445923078164062862089986280348253421170679)
 (defpoll circle_content
   :interval "999h"
-  `~/.config/crcl-select/cr-circle-gen $(cat .json_name)
+  `~/.config/crcl-select/cr-circle-gen $(cat json_files/.json_name)
   `)
 (defvar get_angle true) 
 (defpoll angle
