@@ -16,27 +16,58 @@ int main(int argc, char** argv){
         fprintf(stderr, "Usage: %s <json_name>\n", argv[0]);
         return 1;
     }
-    int hilighted = 0x690899;
-    int color [2] = {
-        0xff00ff, // color1
-        0xff0073,    // color2
-    };
+    // int bg_color = 0x690899;
+    char* bg_color = "690899";
+    // int* color  = {
+    //     0xff00ff, // color1
+    //     0xff0073,    // color2
+    // };
+    char* *colors ;
     int color_number = 2;
 
-
     char path [400] ;
+    strcpy(path, getenv("HOME")); //TODO : use XDG ??
+    strcat(path, "/.config/crcl-select/theme.json");
+    
+    json_error_t error;
+    json_t *root = json_load_file(path, 0, &error);
+    if (!root) {
+        fprintf(stderr, "JSON error: %s\n fallback piink theme", error.text);
+    } else {
+        json_t* theme = json_object_get(root, 
+            (argc >= 3 ? 
+                argv[2] : 
+                (
+                    json_string_value(json_object_get(root, "default"))
+                )
+            ));
+            bg_color = (char*)(json_string_value(json_object_get(theme, "bg")));
+
+            json_t* color_table = json_object_get(theme, "colors");
+            color_number = json_array_size(color_table);
+            colors = malloc(color_number * sizeof(char*));
+            for (int i = 0; i < color_number; i++)
+            {
+                colors[i] = (char*) json_string_value(json_array_get(color_table, i));
+            }
+            
+        }
+
+    // printf("\n%s\n", json_string_value(json_object_get(root, "default")));
+    // printf("\n%s\n", 
+    //                 json_dumps(json_object_get(root, "default"), 550));
+
+
     strcpy(path, getenv("HOME"));
     strcat(path, "/.config/crcl-select/json_files/");
     strcat(path, argv[1]);
-    json_error_t error;
-    json_t *root = json_load_file(path, 0, &error);
+    root = json_load_file(path, 0, &error);
     if (!root) {
         fprintf(stderr, "JSON error: %s\n", error.text);
         return 1;
     }
-    size_t count = json_array_size(root);
+    unsigned int  count = json_array_size(root);
     AppEntry *entries = calloc(count, sizeof(AppEntry));
-    // printf("%s\n\ncaca\n", path);
     
 
 
@@ -45,7 +76,6 @@ int main(int argc, char** argv){
 
         const char *cmd = json_string_value(json_object_get(item, "command"));
         const char *icon = json_string_value(json_object_get(item, "icon"));
-        // int icon_is_cmd = json_boolean_value(json_object_get(item, "icon_is_cmd"));
 
         snprintf(entries[i].command, sizeof(entries[i].command), "%s", cmd);
         // Check if icon contains $()
@@ -66,29 +96,30 @@ int main(int argc, char** argv){
         }
     }
 
-
+    
     // Generate yuck markup
     printf("(overlay :width 300 :height 300 \n\
-        (circular-progress :value 50 :thickness 60 :style \"background-color : #0f0; font-size: 300; color : rgb(71, 2, 136)\" \"L    ?\" \n)"); //${round(EWW_BATTERY.total_avg, 0)}󰏰  ${angle}
+    (circular-progress :value 50 :thickness 0 :style \"background-color : rgb(0, 0, 0); font-size: 300; color : rgb(40, 0, 78)\" \"L    ?\" \n)\
+        "); //${round(EWW_BATTERY.total_avg, 0)}󰏰  ${angle}
 
     for (size_t i = 0; i < count; i++) {
         float angle = (float)i / count * 2* M_PI;
         float s_angle = (angle - M_PI / count) * 180 / M_PI; // Convert to degrees for styling
         float e_angle = (angle + M_PI / count) * 180 / M_PI; // Convert to degrees for styling
         printf("(overlay\
-             (circular-progress  :start-at %f :value %f :thickness 60 :style \"color : #${(angle > %f %s angle < %f) ? '%06x' : '%06x'}\" \n)\
+             (circular-progress  :start-at %f :value %f :thickness 60 :style \"color : #${(angle > %f %s angle < %f) ? '%s' : '%s'}\" \n)\
                 (transform :translate-x %f \n :translate-y %f \n", 
                 100 - e_angle/3.6, 100.0/count,
                     s_angle +   (i == 0 ? 360 : 0),
                                 (i == 0) ? "||"     : "&&",
                     e_angle,
-                    color[i % color_number],
-                    hilighted,
+                    colors[i % color_number],
+                    bg_color,
                     155     * cos(angle),
                     -155    * sin(angle)
                     ); 
                     printf("(button \
-                        :style \"color : #${(angle > %f %s angle < %f) ? '%06x' : '%06x'}; font-size: 35px;\"\
+                        :style \"color : #${(angle > %f %s angle < %f) ? '%s' : '%s'}; font-size: 35px;\"\
                         :halign \"center\"\n\
                         :valign \"center\"\n\
                         :onclick \"%s &\" \"%s\"\n\
@@ -96,8 +127,8 @@ int main(int argc, char** argv){
                         s_angle +   (i == 0 ? 360 : 0),
                         (i == 0) ? "||"     : "&&",
                         e_angle,
-                        hilighted,
-                        color[i % 2],
+                        bg_color,
+                        colors[i % color_number],
                         entries[i].command, entries[i].icon);
 
                 printf(")\n");

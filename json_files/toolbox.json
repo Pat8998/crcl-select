@@ -3,7 +3,7 @@
   {"icon": "󰈹", "command": "notify-send 1 & firefox"},
   {"icon": "", "command": "notify-send 2 & kitty"},
   {"icon": "", "command": "notify-send 3 & kitty btop"},
-  {"icon": "󰻀", "command": "notify-send ✨ & kitty sh -c 'cat ~/.penguin | lolcat'"},
+  {"icon": "󰻀", "command": "notify-send ✨ & ~/.config/crcl-select/c-select open power_menu.json"},
   {"icon": "󱤚", "command": "notify-send 5 & kitty nmtui"},
   {"icon": "", "command": "notify-send 6 & spotify-launcher"},
   {"icon": "$#rfkill list bluetooth | grep -q 'Soft blocked: yes' && echo 󰂲 || echo 󰂯", "command": "rfkill toggle bluetooth; rfkill list bluetooth | grep 'Soft blocked: yes' && notify-send 'Disabled' -r 998 -i /usr/share/icons/Cosmic/scalable/status/bluetooth-disabled-symbolic.svg || notify-send -r 998 -i /usr/share/icons/Cosmic/scalable/status/bluetooth-active-symbolic.svg  'Enabled'"},

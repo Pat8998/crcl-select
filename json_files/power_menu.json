@@ -1,0 +1,8 @@
+[
+  {"icon": "", "command": ""},
+  {"icon": "1", "command": "poweroff"},
+  {"icon": "2󰍃", "command": "logout"},
+  {"icon": "3", "command": "hyprlock & systemctl suspend"},
+  {"icon": "4󰍁", "command": "hyprlock"},
+  {"icon": "5", "command": "reboot"}
+]
