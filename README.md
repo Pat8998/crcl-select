@@ -1,13 +1,16 @@
 # A circle widget
  - Made for Hyprland btw 
- - made with eww https://github.com/elkowar/eww
+ - made with [eww](https://github.com/elkowar/eww)
  - written in C / yuck / css
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/3d6bfeea-0091-43c6-af57-352f08cbb68c" />
 
 ## Download
+
+### Arch :
 ```
-https://github.com/Pat8998/crcl-select/
+yay crcl-select
 ```
+[AUR Link](https://aur.archlinux.org/packages/crcl-select)
 
 ## Build
  - clone with
@@ -19,11 +22,12 @@ https://github.com/Pat8998/crcl-select/
   ~/.config/crcl-select/
   ```
 - run build.sh
+- run install.sh 
 - Now everything is installed !
 
 ## Usage
  - Create a `whatever.json` under `~/.config/crcl-select/`
-   - a template named `toolbox.json` is here to help you !
+   - a template named `toolbox.json` is here to help you ! Find it under `/etc/crcl-select/`
    - `icon` field is for the icon, duh
      - Plain text, emojis, nerd-fonts
      - if you add $# at the beginning it will be interpreted by bash :) (see example)
@@ -38,14 +42,16 @@ https://github.com/Pat8998/crcl-select/
  - or press a number 0-9 to execute the action
  - Example : in your `hyprland.conf`
    ```
-   bind =		$mainMod, A, exec, ~/.config/crcl-select/c-select open toolbox.json
-   bindr =	$mainMod, A, exec, ~/.config/crcl-select/c-select close toolbox.json
+   bind =		$mainMod, A, exec, ~/.config/crcl-select/c-select open whatever.json
+   bindr =	$mainMod, A, exec, ~/.config/crcl-select/c-select close whatever.json
    ```
    (I recommend one key shortcut, do as you want)
+
+## Theming
+ - Under `.config/crcl-select/theme.json`, put your new theme as an entry (or modify mines, I don't care).
+ - In your open call, you can specify a theme name. If not specified, the default theme (in the "default" field in the config file) will be used.
+ - If `theme.json` is misread, fallback to piink theme (hardcoded in C).  
 
 ## Features-request
 
 Well, I'm in studies so basically if you want to do smth you'd have to do it yourselves :(
-I would like to make themes, but this is hard 🥲 (if you do it I recommend parsing a json  for colors)
- - Battery text color and size is in `eww.scss`
- - the rest is kinda hardcoded in `eww-circle.c`... you can change it and recompile of course. You'd need a similar trick as the json name file (put into a separate file) to get a dynamic argument that you would put diretly in the open script

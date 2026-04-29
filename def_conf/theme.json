@@ -1,0 +1,34 @@
+{
+  "default": "mustard",
+  "ugly": 
+  {
+    "bg": "f00",
+    "colors":
+    [
+      "00ff00",
+      "00f",
+      "ffff00"
+    ]
+  }
+  ,
+  "piink": 
+    {
+      "bg": "690899",
+      "colors":
+      [
+        "ff0067",
+        "ff00ff"
+      ]
+    }
+    "mustard": 
+      {
+        "bg": "7A1137",
+        "colors":
+        [
+          "DE8C17",
+          "FFF804"
+        ]
+      }
+      
+}
+  

@@ -2,14 +2,14 @@
 (defvar pi 3.1415926535897932384626433832795028841971693993751058209749445923078164062862089986280348253421170679)
 (defpoll circle_content
   :interval "999h"
-  `~/.config/crcl-select/cr-circle-gen $(cat json_files/.json_name) $(cat .theme)
+  `crcl-circle-gen $(cat /tmp/crcl_json_name) $(cat /tmp/crcl_theme)
   `)
 (defvar get_angle true) 
 (defpoll angle
   :interval "10ms"
               :initial 0  ; optional, defaults to poll at startup
               :run-while get_angle   ; optional, defaults to 'true'
-  `~/.config/crcl-select/cr-angle`)
+  `crcl-angle`)
 
 (defwidget circle-layout []
     (literal 
@@ -41,6 +41,5 @@
         (
             circle-layout
         )
-        "${round(EWW_BATTERY.total_avg, 0)}󰏰"   
     )
 )

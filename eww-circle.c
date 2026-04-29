@@ -33,6 +33,7 @@ int main(int argc, char** argv){
     json_t *root = json_load_file(path, 0, &error);
     if (!root) {
         fprintf(stderr, "JSON error: %s\n fallback piink theme", error.text);
+        // system("notify-send no theme.json for crcl-select");
     } else {
         json_t* theme = json_object_get(root, 
             (argc >= 3 ? 
@@ -41,25 +42,34 @@ int main(int argc, char** argv){
                     json_string_value(json_object_get(root, "default"))
                 )
             ));
-            bg_color = (char*)(json_string_value(json_object_get(theme, "bg")));
+			// if (argc >= 3)
+   //          system("notify-send \"JSON error: theme not found\n fallback default theme\"");
+            if (theme == json_null())         
+            fprintf(stderr, "JSON error: theme not found\n fallback default theme"); 	
+            	theme = json_object_get(root, 
+            	                (
+            	                    json_string_value(json_object_get(root, "default"))
+            	                )
+            	            );
+            if (theme == json_null())
+            	fprintf(stderr, "JSON error: no default theme\n fallback piink theme (hardcoded)");
+            else {
+	            bg_color = (char*)(json_string_value(json_object_get(theme, "bg")));
 
-            json_t* color_table = json_object_get(theme, "colors");
-            color_number = json_array_size(color_table);
-            colors = malloc(color_number * sizeof(char*));
-            for (int i = 0; i < color_number; i++)
-            {
-                colors[i] = (char*) json_string_value(json_array_get(color_table, i));
+	            json_t* color_table = json_object_get(theme, "colors");
+	            color_number = json_array_size(color_table);
+	            colors = malloc(color_number * sizeof(char*));
+	            for (int i = 0; i < color_number; i++)
+	            {
+	                colors[i] = (char*) json_string_value(json_array_get(color_table, i));
+	            }
             }
             
         }
 
-    // printf("\n%s\n", json_string_value(json_object_get(root, "default")));
-    // printf("\n%s\n", 
-    //                 json_dumps(json_object_get(root, "default"), 550));
-
 
     strcpy(path, getenv("HOME"));
-    strcat(path, "/.config/crcl-select/json_files/");
+    strcat(path, "/.config/crcl-select/");
     strcat(path, argv[1]);
     root = json_load_file(path, 0, &error);
     if (!root) {
@@ -82,7 +92,7 @@ int main(int argc, char** argv){
         if (icon && icon[0] == '$' && icon[1] == '#') {
             // Extract and execute the command
             // For example: if icon is "$(echo 󰈹)" extract "echo 󰈹"
-            FILE *fp = popen(icon + 2, "r");  // skip "$("
+            FILE *fp = popen(icon + 2, "r");  // skip "$#"
             if (fp) {
                 char buffer[64];
                 fgets(buffer, sizeof(buffer), fp);
@@ -99,7 +109,7 @@ int main(int argc, char** argv){
     
     // Generate yuck markup
     printf("(overlay :width 300 :height 300 \n\
-    (circular-progress :value 50 :thickness 0 :style \"background-color : rgb(0, 0, 0); font-size: 300; color : rgb(40, 0, 78)\" \"L    ?\" \n)\
+    (circular-progress :value 50 :thickness 0 :style \"background:none; font-size: 300; color : rgba(40, 0, 78, 0)\" \"L    ?\" \n)\
         "); //${round(EWW_BATTERY.total_avg, 0)}󰏰  ${angle}
 
     for (size_t i = 0; i < count; i++) {
@@ -135,7 +145,19 @@ int main(int argc, char** argv){
             printf(")\n");
                 // printf("circle-part :i \"%zu\" :total \"%zu\" :cmd \"%s\" :icon \"%s\")\n", i, count, entries[i].command, entries[i].icon);
         }
-        printf(")\n");
+        printf("(label\
+	        	:style \"font-size:4em; color :#${");
+	    for	(int i = 0; i < color_number; i++)
+	    	printf("((angle %% %f) < %f) ? '%s' :\n",
+	    	1.0 * color_number * (360 / count),
+	    	1.0 * i * (360/count) + 180 / count,
+	    	colors[i]
+	    	);
+
+	    printf("'%s'};\"\
+	        	:text \"${round(EWW_BATTERY.total_avg, 0)}󰏰\"\
+			)\
+        )\n", colors[0]);
     
     
     free(entries);

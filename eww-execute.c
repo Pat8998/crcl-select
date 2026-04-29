@@ -24,7 +24,7 @@ int main(int argc, char** argv) {
         fprintf(stderr, "Error: HOME environment variable not set\n");
         return 1;
     }
-    snprintf(path, sizeof(path), "%s/.config/crcl-select/json_files/%s", home, json_filename);
+    snprintf(path, sizeof(path), "%s/.config/crcl-select/%s", home, json_filename);
 
     // Load JSON
     json_error_t error;
