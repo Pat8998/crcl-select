@@ -61,7 +61,7 @@ int main(int argc, char** argv){
             	fprintf(stderr, "JSON error: no default theme\n fallback piink theme (hardcoded)");
             } else {
 	            bg_color = (char*)(json_string_value(json_object_get(theme, "bg")));
-
+				system("notify-send caca RATIO");
 	            json_t* color_table = json_object_get(theme, "colors");
 	            color_number = json_array_size(color_table);
 	            colors = malloc(color_number * sizeof(char*));

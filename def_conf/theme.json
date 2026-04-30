@@ -1,5 +1,15 @@
 {
-  "default": "ugly",
+  "default": "ct-blue",
+  "ct-blue": 
+    {
+      "bg": "5d707f",
+      "colors":
+      [
+        "66ced6",
+        "77bee6"
+      ]
+    }
+    ,
   "ugly": 
   {
     "bg": "f00",
