@@ -18,12 +18,11 @@ int main(int argc, char** argv){
     }
     // int bg_color = 0x690899;
     char* bg_color = "690899";
-    // int* color  = {
-    //     0xff00ff, // color1
-    //     0xff0073,    // color2
-    // };
     char* *colors ;
     int color_number = 2;
+   	colors = malloc(color_number * sizeof(char*));
+   	colors[0] = "ff00ff";
+   	colors[1] = "ff0073";
 
     char path [400] ;
     strcpy(path, getenv("HOME")); //TODO : use XDG ??
@@ -32,8 +31,14 @@ int main(int argc, char** argv){
     json_error_t error;
     json_t *root = json_load_file(path, 0, &error);
     if (!root) {
-        fprintf(stderr, "JSON error: %s\n fallback piink theme", error.text);
-        // system("notify-send no theme.json for crcl-select");
+        fprintf(stderr, "JSON error: %s\n Fallback /etc/crcl-select/theme.json\n", error.text);
+        snprintf(path, sizeof(path), "/etc/crcl-select/theme.json");
+		root = json_load_file(path, 0, &error);
+    }
+	if (!root) {
+		fprintf(stderr, "JSON error: %s\n", error.text);
+		system("toilet RATIO");
+       	return 1;
     } else {
         json_t* theme = json_object_get(root, 
             (argc >= 3 ? 
@@ -44,16 +49,17 @@ int main(int argc, char** argv){
             ));
 			// if (argc >= 3)
    //          system("notify-send \"JSON error: theme not found\n fallback default theme\"");
-            if (theme == json_null())         
-            fprintf(stderr, "JSON error: theme not found\n fallback default theme"); 	
+            if (theme == json_null()){
+            	fprintf(stderr, "JSON error: theme not found\n fallback default theme"); 	
             	theme = json_object_get(root, 
             	                (
             	                    json_string_value(json_object_get(root, "default"))
             	                )
             	            );
-            if (theme == json_null())
+            }         
+            if (theme == json_null()) {
             	fprintf(stderr, "JSON error: no default theme\n fallback piink theme (hardcoded)");
-            else {
+            } else {
 	            bg_color = (char*)(json_string_value(json_object_get(theme, "bg")));
 
 	            json_t* color_table = json_object_get(theme, "colors");
@@ -73,8 +79,14 @@ int main(int argc, char** argv){
     strcat(path, argv[1]);
     root = json_load_file(path, 0, &error);
     if (!root) {
-        fprintf(stderr, "JSON error: %s\n", error.text);
-        return 1;
+        fprintf(stderr, "JSON error: %s\n Fallback /etc/crcl-select/%s\n", error.text, argv[1]);
+        snprintf(path, sizeof(path), "/etc/crcl-select/%s", argv[1]);
+		root = json_load_file(path, 0, &error);
+		if (!root) {
+			fprintf(stderr, "JSON error: %s\n", error.text);
+			system("toilet RATIO");
+        	return 1;
+        }
     }
     unsigned int  count = json_array_size(root);
     AppEntry *entries = calloc(count, sizeof(AppEntry));
@@ -161,6 +173,7 @@ int main(int argc, char** argv){
     
     
     free(entries);
+    free(colors);
     json_decref(root);
 
     return 0;

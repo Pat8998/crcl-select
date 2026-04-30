@@ -1,5 +1,5 @@
 {
-  "default": "mustard",
+  "default": "ugly",
   "ugly": 
   {
     "bg": "f00",
@@ -19,7 +19,7 @@
         "ff0067",
         "ff00ff"
       ]
-    }
+    },
     "mustard": 
       {
         "bg": "7A1137",

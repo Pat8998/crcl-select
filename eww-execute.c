@@ -30,8 +30,14 @@ int main(int argc, char** argv) {
     json_error_t error;
     json_t *root = json_load_file(path, 0, &error);
     if (!root) {
-        fprintf(stderr, "JSON error: %s\n", error.text);
-        return 1;
+        fprintf(stderr, "JSON error: %s\n Fallback /etc/crcl-select/%s\n", error.text, json_filename);
+        snprintf(path, sizeof(path), "/etc/crcl-select/%s", json_filename);
+		root = json_load_file(path, 0, &error);
+		if (!root) {
+			fprintf(stderr, "JSON error: %s\n", error.text);
+			system("toilet RATIO");
+        	return 1;
+        }
     }
 
     size_t count = json_array_size(root);
