@@ -36,9 +36,7 @@ int main(int argc, char** argv){
 		root = json_load_file(path, 0, &error);
     }
 	if (!root) {
-		fprintf(stderr, "JSON error: %s\n", error.text);
-		system("toilet RATIO");
-       	return 1;
+		fprintf(stderr, "JSON error: %s\nfallback piink theme (hardcoded)\n", error.text);
     } else {
         json_t* theme = json_object_get(root, 
             (argc >= 3 ? 
@@ -47,9 +45,7 @@ int main(int argc, char** argv){
                     json_string_value(json_object_get(root, "default"))
                 )
             ));
-			// if (argc >= 3)
-   //          system("notify-send \"JSON error: theme not found\n fallback default theme\"");
-            if (theme == json_null()){
+            if (theme == NULL){
             	fprintf(stderr, "JSON error: theme not found\n fallback default theme"); 	
             	theme = json_object_get(root, 
             	                (
@@ -57,11 +53,10 @@ int main(int argc, char** argv){
             	                )
             	            );
             }         
-            if (theme == json_null()) {
-            	fprintf(stderr, "JSON error: no default theme\n fallback piink theme (hardcoded)");
+            if (theme == NULL) {
+            	fprintf(stderr, "JSON error: no default theme\n fallback piink theme (hardcoded)\n");
             } else {
 	            bg_color = (char*)(json_string_value(json_object_get(theme, "bg")));
-				system("notify-send caca RATIO");
 	            json_t* color_table = json_object_get(theme, "colors");
 	            color_number = json_array_size(color_table);
 	            colors = malloc(color_number * sizeof(char*));
@@ -158,7 +153,7 @@ int main(int argc, char** argv){
                 // printf("circle-part :i \"%zu\" :total \"%zu\" :cmd \"%s\" :icon \"%s\")\n", i, count, entries[i].command, entries[i].icon);
         }
         printf("(label\
-	        	:style \"font-size:4em; color :#${");
+	        	:style \"font-size:2.5em; color :#${");
 	    for	(int i = 0; i < color_number; i++)
 	    	printf("((angle %% %f) < %f) ? '%s' :\n",
 	    	1.0 * color_number * (360 / count),
