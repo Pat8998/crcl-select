@@ -52,6 +52,14 @@ yay crcl-select
  - In your open call, you can specify a theme name. If not specified, the default theme (in the "default" field in the config file) will be used.
  - If `theme.json` is misread, fallback to piink theme (hardcoded in C).  
 
+## To-do list 
+###### *that I will forget to update*
+### For V2.1
+ - Catpuccin theme
+ - Fix the + line 155 it breaks battery rendering (fixed and pushed)
+ - Fix the `PKGBUILD` so it resolves conflicts when installing (probably the rule in the incstall command)
+ - Fix `\n` in the verbose Package building (and/or make it an inside joke)
+
 ## Features-request
 
 Well, I'm in studies so basically if you want to do smth you'd have to do it yourselves :(
