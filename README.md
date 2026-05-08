@@ -17,12 +17,13 @@ yay crcl-select
    ```
    git clone https://github.com/Pat8998/crcl-select/
    ```
-- move all files to
-  ```
-  ~/.config/crcl-select/
-  ```
 - run build.sh
 - run install.sh 
+- move config files with
+  ```
+  mkdir -p ~/.config/crcl-select 
+	cp /etc/crcl-select/* ~/.config/crcl-select
+  ```
 - Now everything is installed !
 
 ## Usage
@@ -32,33 +33,34 @@ yay crcl-select
      - Plain text, emojis, nerd-fonts
      - if you add $# at the beginning it will be interpreted by bash :) (see example)
    - `command` field wiil be executed !
-     - if a key is pressed it will be run under `~/.config/crcl-select/`
+     - if a key is pressed it will be run under `/usr/share/crcl-select`
      - if the circle is closed by the close command, it will be run under `~/`
-     - I'm too lazy to search why, but I guess this is a way to get wich way the command was pushed. use cd; if you're unhappy with it
+     - ~~I'm too lazy to search why~~ This is because the way I launch the commands, but I guess this is a way to get which way the command was pushed. use cd; if you're unhappy with it
  - Open a circle with
-   ```~/.config/crcl-select/c-select open {name-of-your-json}```
+   ```
+   crcl-select open {name-of-your-json}
+   ```
  - Close the circle and execute the corresponding action (to your pointer location) with
-   ```~/.config/crcl-select/c-select close {name-of your json}```
+   ```
+   crcl-select close {name-of your json}
+   ```
  - or press a number 0-9 to execute the action
  - Example : in your `hyprland.conf`
    ```
-   bind =		$mainMod, A, exec, ~/.config/crcl-select/c-select open whatever.json
-   bindr =	$mainMod, A, exec, ~/.config/crcl-select/c-select close whatever.json
+   bind =		$mainMod, A, exec, crcl-select open   whatever.json
+   bindr =	$mainMod, A, exec, crcl-select close  whatever.json
    ```
-   (I recommend one key shortcut, do as you want)
+   (I recommend a shortcut with a single key like super, do as you want)
 
 ## Theming
  - Under `.config/crcl-select/theme.json`, put your new theme as an entry (or modify mines, I don't care).
+ - You can copy the default config file from `/etc/crcl-select/`
  - In your open call, you can specify a theme name. If not specified, the default theme (in the "default" field in the config file) will be used.
  - If `theme.json` is misread, fallback to piink theme (hardcoded in C).  
 
 ## To-do list 
-###### *that I will forget to update*
-### For V2.1
- - ~~Catpuccin theme~~ 
- - ~~Fix the + line 155 it breaks battery~~
- - Fix the `PKGBUILD` so it resolves conflicts when installing (probably the rule in the incstall command)
- - Fix `\n` in the verbose Package building (and/or make it an inside joke)
+###### *Nothing on the to-do list for now!*
+
 
 ## Features-request
 
