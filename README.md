@@ -55,8 +55,8 @@ yay crcl-select
 ## To-do list 
 ###### *that I will forget to update*
 ### For V2.1
- - Catpuccin theme
- - Fix the + line 155 it breaks battery rendering (fixed and pushed)
+ - ~~Catpuccin theme~~ 
+ - ~~Fix the + line 155 it breaks battery~~
  - Fix the `PKGBUILD` so it resolves conflicts when installing (probably the rule in the incstall command)
  - Fix `\n` in the verbose Package building (and/or make it an inside joke)
 
