@@ -2,41 +2,88 @@
   "default": "ct-blue",
   "ct-blue": 
     {
-      "bg": "5d707f",
+      "bg": "#5d707f",
       "colors":
       [
-        "66ced6",
-        "77bee6"
+        "#66ced6",
+        "#77bee6"
+      ]
+    }
+    ,
+  "gruvbox": 
+    {
+      "bg": "#282828",
+      "colors":
+      [
+        "#cc241d",
+        "#98971a"
+      ]
+    }
+    ,
+  "catpuccin_mocha": 
+    {
+      "bg": "#1e1e2e",
+      "colors":
+      [
+        "#ca9ee6",
+        "#f38ba8",
+	"#fab387",
+	"#a6e3a1",
+	"#89b4fa"
+      ]
+    }
+    ,
+  "power_menu": 
+    {
+      "bg": "#000",
+      "colors":
+      [
+        "#E30b5d",
+        "#FF0022",
+	"#201DB8",
+	"#FFE500",
+	"#14CBE3",
+	"#0f0"
+      ]
+    }
+    ,
+  "DarkRed": 
+    {
+      "bg": "#400000",
+      "colors":
+      [
+        "#f00000",
+        "#C00000"
       ]
     }
     ,
   "ugly": 
   {
-    "bg": "f00",
+    "bg": "#f00",
     "colors":
     [
-      "00ff00",
-      "00f",
-      "ffff00"
+      "#00ff00",
+      "#00f",
+      "#ffff00"
     ]
   }
   ,
   "piink": 
     {
-      "bg": "690899",
+      "bg": "#690899",
       "colors":
       [
-        "ff0067",
-        "ff00ff"
+        "#ff0067",
+        "#ff00ff"
       ]
     },
     "mustard": 
       {
-        "bg": "7A1137",
+        "bg": "#7A1137",
         "colors":
         [
-          "DE8C17",
-          "FFF804"
+          "#DE8C17",
+          "#FFF804"
         ]
       }
       

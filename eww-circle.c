@@ -7,7 +7,6 @@
 typedef struct {
     char icon[64];      // nerdfont char or generated icon
     char command[256];
-    int icon_is_cmd;    // 1 if icon field is a shell command to run
 } AppEntry;
 
 
@@ -124,7 +123,7 @@ int main(int argc, char** argv){
         float s_angle = (angle - M_PI / count) * 180 / M_PI; // Convert to degrees for styling
         float e_angle = (angle + M_PI / count) * 180 / M_PI; // Convert to degrees for styling
         printf("(overlay\
-             (circular-progress  :start-at %f :value %f :thickness 60 :style \"color : #${(angle > %f %s angle < %f) ? '%s' : '%s'}\" \n)\
+             (circular-progress  :start-at %f :value %f :thickness 60 :style \"color : ${(angle > %f %s angle < %f) ? '%s' : '%s'}\" \n)\
                 (transform :translate-x %f \n :translate-y %f \n", 
                 100 - e_angle/3.6, 100.0/count,
                     s_angle +   (i == 0 ? 360 : 0),
@@ -136,7 +135,7 @@ int main(int argc, char** argv){
                     -155    * sin(angle)
                     ); 
                     printf("(button \
-                        :style \"color : #${(angle > %f %s angle < %f) ? '%s' : '%s'}; font-size: 35px;\"\
+                        :style \"color : ${(angle > %f %s angle < %f) ? '%s' : '%s'}; font-size: 35px;\"\
                         :halign \"center\"\n\
                         :valign \"center\"\n\
                         :onclick \"%s &\" \"%s\"\n\
@@ -153,7 +152,7 @@ int main(int argc, char** argv){
                 // printf("circle-part :i \"%zu\" :total \"%zu\" :cmd \"%s\" :icon \"%s\")\n", i, count, entries[i].command, entries[i].icon);
         }
         printf("(label\
-	        	:style \"font-size:2.5em; color :#${");
+	        	:style \"font-size:2.5em; color :${");
 	    for	(int i = 0; i < color_number; i++)
 	    	printf("((angle %% %f) < %f) ? '%s' :\n",
 	    	1.0 * color_number * (360 / count),

@@ -1,9 +1,9 @@
 [
-  {"icon": "", "command": "notify-send -r 6967 ✨$(date +%T)✨&"},
+  {"icon": "", "command": "notify-send -r 6967 $(date +%H:%M) -i /usr/share/icons/breeze/actions/22/clock-large-symbolic.svg & "},
   {"icon": "󰈹", "command": "notify-send 1 & firefox"},
   {"icon": "", "command": "notify-send 2 & kitty"},
   {"icon": "", "command": "notify-send 3 & kitty btop"},
-  {"icon": "", "command": "crcl-select o power_menu.json"},
+  {"icon": "", "command": "crcl-select o power_menu.json power_menu"},
   {"icon": "󰻀", "command": "notify-send ✨ & kitty sh -c 'toilet Penguins are the best -t -f mono12 | lolcat && read -s -n 1'"},
   {"icon": "󱤚", "command": "notify-send 5 & kitty nmtui"},
   {"icon": "$#rfkill list bluetooth | grep -q 'Soft blocked: yes' && echo 󰂲 || echo 󰂯", "command": "rfkill toggle bluetooth; rfkill list bluetooth | grep 'Soft blocked: yes' && notify-send 'Disabled' -r 998 -i /usr/share/icons/Cosmic/scalable/status/bluetooth-disabled-symbolic.svg || notify-send -r 998 -i /usr/share/icons/Cosmic/scalable/status/bluetooth-active-symbolic.svg  'Enabled'"},
