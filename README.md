@@ -59,8 +59,7 @@ yay crcl-select
  - If `theme.json` is misread, fallback to piink theme (hardcoded in C).  
 
 ## To-do list 
-###### *Nothing on the to-do list for now!*
-
+ - Fix the double open issue
 
 ## Features-request
 
