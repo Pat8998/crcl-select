@@ -35,7 +35,7 @@ yay crcl-select
    - `command` field wiil be executed !
      - if a key is pressed it will be run under `/usr/share/crcl-select`
      - if the circle is closed by the close command, it will be run under `~/`
-     - ~~I'm too lazy to search why~~ This is because the way I launch the commands, but I guess this is a way to get which way the command was pushed. use cd; if you're unhappy with it
+     - ~~I'm too lazy to search why~~ This is because the way I launch the commands, but I guess this is a way to get which way the command was pushed. use `cd;` if you're unhappy with it
  - Open a circle with
    ```
    crcl-select open {name-of-your-json}
