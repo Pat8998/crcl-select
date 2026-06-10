@@ -60,6 +60,11 @@ yay crcl-select
 
 ## To-do list 
  - Fix the double open issue
+ - Fix an issue where the middle text's color can change without changing tile on the rightest tile when having an odd number of tiles
+ - Update [README.md](https://github.com/Pat8998/crcl-select/blob/main/README.md) with the new [Hyprland config](https://wiki.hypr.land/) in lua
+ - Feature : custom binds inside the toolbox.json file
+ - Feature : customizable center text (either $# interpreted by bash, either text passed to eww so you can still configure the battery percent)
+
 
 ## Features-request
 
