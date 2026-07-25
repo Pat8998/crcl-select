@@ -94,10 +94,9 @@ int main(int argc, char** argv){
         const char *icon = json_string_value(json_object_get(item, "icon"));
 
         snprintf(entries[i].command, sizeof(entries[i].command), "%s", cmd);
-        // Check if icon contains $()
+        // Check if icon contains $#
         if (icon && icon[0] == '$' && icon[1] == '#') {
             // Extract and execute the command
-            // For example: if icon is "$(echo 󰈹)" extract "echo 󰈹"
             FILE *fp = popen(icon + 2, "r");  // skip "$#"
             if (fp) {
                 char buffer[64];

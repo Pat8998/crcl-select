@@ -7,6 +7,9 @@
   {"icon": "󰻀", "command": "notify-send ✨ & kitty sh -c 'toilet Penguins are the best -t -f mono12 | lolcat && read -s -n 1'"},
   {"icon": "󱤚", "command": "notify-send 5 & kitty nmtui"},
   {"icon": "$#rfkill list bluetooth | grep -q 'Soft blocked: yes' && echo 󰂲 || echo 󰂯", "command": "rfkill toggle bluetooth; rfkill list bluetooth | grep 'Soft blocked: yes' && notify-send 'Disabled' -r 998 -i /usr/share/icons/Cosmic/scalable/status/bluetooth-disabled-symbolic.svg || notify-send -r 998 -i /usr/share/icons/Cosmic/scalable/status/bluetooth-active-symbolic.svg  'Enabled'"},
-  {"icon": "$#rfkill list wifi      | grep -q 'Soft blocked: yes' && echo 󰤮 || echo 󰤢", "command": "rfkill toggle wifi; rfkill list wifi | grep -q 'Soft blocked: yes' && notify-send -r 999 -i /usr/share/icons/Cosmic/scalable/status/network-wireless-disconnected-symbolic.svg 'Wi-Fi' 'Disabled' || notify-send -r 999 -i /usr/share/icons/Cosmic/scalable/status/network-wireless-signal-excellent-symbolic.svg 'Wi-Fi' 'Enabled'"}
+  {
+    "icon": "$#rfkill list wifi      | grep -q 'Soft blocked: yes' && echo 󰤮 || SIGNAL=$(nmcli device wifi list --rescan no | awk '$1 ~ /[*]/ {print $8}') && echo $SIGNAL >> /tmp/caca; [ $SIGNAL -ge 90 ] && echo '󰤨' || ([ $SIGNAL -ge 80 ] && echo '󰤥' || ([ $SIGNAL -ge 60 ] && echo '󰤢' || ([ $SIGNAL -ge 45 ] && echo '󰤟' || ([ $SIGNAL -ge 20 ] && echo '󰤯' || echo '󰤫'))))", 
+    "command": "rfkill toggle wifi; rfkill list wifi | grep -q 'Soft blocked: yes' && notify-send -r 999 -i /usr/share/icons/Cosmic/scalable/status/network-wireless-disconnected-symbolic.svg 'Wi-Fi' 'Disabled' || notify-send -r 999 -i /usr/share/icons/Cosmic/scalable/status/network-wireless-signal-excellent-symbolic.svg 'Wi-Fi' 'Enabled'"
+  }
 ]
 
