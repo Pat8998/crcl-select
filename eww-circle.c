@@ -151,7 +151,11 @@ int main(int argc, char** argv){
                 // printf("circle-part :i \"%zu\" :total \"%zu\" :cmd \"%s\" :icon \"%s\")\n", i, count, entries[i].command, entries[i].icon);
         }
         printf("(label\
-	        	:style \"font-size:2.5em; color :${");
+	        	:style \"font-size:2.5em; color :${\
+                (angle > %f) ? '%s' :\n",
+                360.0 - (180/count), //360 - half of a tile so the rightest tile
+                colors[0]
+            );
 	    for	(int i = 0; i < color_number; i++)
 	    	printf("((angle %% %f) < %f) ? '%s' :\n",
 	    	1.0 * color_number * (360 / count),

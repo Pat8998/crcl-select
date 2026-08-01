@@ -18,7 +18,7 @@ yay crcl-select
    git clone https://github.com/Pat8998/crcl-select/
    ```
 - run build.sh
-- run install.sh 
+- run install.sh (as admin)
 - move config files with
   ```
   mkdir -p ~/.config/crcl-select 
@@ -45,12 +45,35 @@ yay crcl-select
    crcl-select close {name-of your json}
    ```
  - or press a number 0-9 to execute the action
- - Example : in your `hyprland.conf`
+
+### Example : in your `hyprland.conf` 
+ <details> <summary>Hyprlang (pre v0.55)</summary>
+
    ```
    bind =		$mainMod, A, exec, crcl-select open   whatever.json
    bindr =	$mainMod, A, exec, crcl-select close  whatever.json
    ```
    (I recommend a shortcut with a single key like super, do as you want)
+</details> <details> <summary>Hyprlua </summary>
+
+   ```
+   hl.bind(
+      "SUPER + A", 
+      hl.dsp.exec_cmd(
+        "crcl-select open   whatever.json"
+      )
+    )
+    hl.bind(
+      "SUPER + A", 
+      hl.dsp.exec_cmd(
+        "crcl-select close  whatever.json"
+      ),
+      {release = true}
+    )
+   ```
+   ###### I recommend one-key shortcut, as it will make a 2-key shortcut for launching with keyboard
+
+</details>
 
 ## Theming
  - Under `.config/crcl-select/theme.json`, put your new theme as an entry (or modify mines, I don't care).
@@ -59,13 +82,15 @@ yay crcl-select
  - If `theme.json` is misread, fallback to piink theme (hardcoded in C).  
 
 ## To-do list 
- - Fix the double open issue
- - Fix an issue where the middle text's color can change without changing tile on the rightest tile when having an odd number of tiles
- - Update [README.md](https://github.com/Pat8998/crcl-select/blob/main/README.md) with the new [Hyprland config](https://wiki.hypr.land/) in lua
- - Feature : custom binds inside the toolbox.json file
- - Feature : customizable center text (either $# interpreted by bash, either text passed to eww so you can still configure the battery percent)
+ - [ ] Fix the double open issue
+ - [x] Fix an issue where the middle text's color can change without changing tile on the rightest tile when having an odd number of tiles
+ - [x] Update [README.md](https://github.com/Pat8998/crcl-select/blob/main/README.md) with the new [Hyprland config](https://wiki.hypr.land/) in lua
+ - [ ] Feature : custom binds inside the toolbox.json file
+ - [ ] Feature : customizable center text (either $# interpreted by bash, either text passed to eww so you can still configure the battery percent)
 
 
 ## Features-request
 
 Well, I'm in studies so basically if you want to do smth you'd have to do it yourselves :(
+
+Hopefully you can PR ?
