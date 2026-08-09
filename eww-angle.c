@@ -33,9 +33,16 @@ int main(int argc, char** argv) {
                 
         printf("%.2f\n", angle);
     } else{
-      char mv[40];
+      char mv[100];
+      sprintf(mv, "hyprctl dispatch 'hl.dsp.cursor.move({ x = %d,y = %d })'", (int)cx, (int)cy);
+      int ret =   system(mv);
       sprintf(mv, "hyprctl dispatch movecursor %d %d", (int)cx, (int)cy);
       system(mv);
+    //   printf("\n\n %d\n", ret);
+    //   if (ret !=  0){
+    //       printf("caca\n\n");
+          
+    //     }
     }
     return 0;
 }

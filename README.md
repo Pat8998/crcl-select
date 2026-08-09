@@ -52,11 +52,16 @@ yay crcl-select
    ```
    bind =		$mainMod, A, exec, crcl-select open   whatever.json
    bindr =	$mainMod, A, exec, crcl-select close  whatever.json
+   #to avoid double open issue most of the time
+   exec-once = eww daemon -c /usr/share/crcl-select             
    ```
    (I recommend a shortcut with a single key like super, do as you want)
 </details> <details> <summary>Hyprlua </summary>
 
    ```
+   --to avoid double open issue most of the time
+   hl.on("hyprland.start", function () hl.exec_cmd(" eww daemon -c /usr/share/crcl-select")) 
+   
    hl.bind(
       "SUPER + A", 
       hl.dsp.exec_cmd(
@@ -82,9 +87,11 @@ yay crcl-select
  - If `theme.json` is misread, fallback to piink theme (hardcoded in C).  
 
 ## To-do list 
- - [ ] Fix the double open issue
+ - [ ] Fix the double open issue -> for now do an exec-once
  - [x] Fix an issue where the middle text's color can change without changing tile on the rightest tile when having an odd number of tiles
  - [x] Update [README.md](https://github.com/Pat8998/crcl-select/blob/main/README.md) with the new [Hyprland config](https://wiki.hypr.land/) in lua
+ - [x] Update [eww.angle.c](https://github.com/Pat8998/crcl-select/blob/main/eww.angle.c) for the new move cursor API
+ - [x] Created a git version of the package for reckless people that wish their system not working
  - [ ] Feature : custom binds inside the toolbox.json file
  - [ ] Feature : customizable center text (either $# interpreted by bash, either text passed to eww so you can still configure the battery percent)
 
