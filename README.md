@@ -88,6 +88,7 @@ yay crcl-select
 
 ## To-do list 
  - [ ] Fix the double open issue -> for now do an exec-once
+ - [ ] Fix an issue with [eww.angle.c](https://github.com/Pat8998/crcl-select/blob/main/eww.angle.c) where having a transform like rotating the display sideways causes isuues
  - [x] Fix an issue where the middle text's color can change without changing tile on the rightest tile when having an odd number of tiles
  - [x] Update [README.md](https://github.com/Pat8998/crcl-select/blob/main/README.md) with the new [Hyprland config](https://wiki.hypr.land/) in lua
  - [x] Update [eww.angle.c](https://github.com/Pat8998/crcl-select/blob/main/eww.angle.c) for the new move cursor API
